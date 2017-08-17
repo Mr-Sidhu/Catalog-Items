@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='appStyles.css') }}">
+    </head>
+    <body>
+        <div class="topBar">
+            <h1>Catalog APP</h1>
+            <a id="login" href="{{url_for('gdisconnect')}}">Logout</a>
+        </div>
+        
+        <div id="leftSide">
+            <h3> Catagories </h3>
+            {% for c in catalog %}
+                <a href="{{ url_for('catalogItems', catalog_id = c.id)}}"> <p>{{c.name}}</p> </a>
+            {% endfor %}
+        </div>
+
+        <div id="rightSide">
+            <h3> {{catalog_selected.name}}</h3>
+            <a id="homeLink" href="{{url_for('catalog')}}">Home</a>
+            {% for i in items %}
+              
+                <a href="{{url_for('itemInfo', catalog_id = i.catalog_id, catalogItem_id = i.id)}}"> <p>{{i.name}}</p> </a>
+                
+            {% endfor %}
+        </div>
+    </body>
+</html>
